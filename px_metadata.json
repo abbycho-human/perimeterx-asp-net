@@ -11,6 +11,7 @@
         "css_ref",
         "custom_cookie_header",
         "custom_logo",
+        "custom_parameters",
         "enforce_specific_routes",
         "filter_by_extension",
         "filter_by_route",

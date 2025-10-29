@@ -772,5 +772,19 @@ namespace PerimeterX
                 this["customCredentialsExtractionHandler"] = value;
             }
         }
+
+
+        [ConfigurationProperty("customParametersHandler")]
+        public string CustomParametersHandler
+        {
+            get
+            {
+                return (string)this["customParametersHandler"];
+            }
+            set
+            {
+                this["customParametersHandler"] = value;
+            }
+        }
     }
 }

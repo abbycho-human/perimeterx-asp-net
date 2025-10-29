@@ -4,6 +4,7 @@ using System;
 using System.Collections.Specialized;
 using System.Linq;
 using PerimeterX.DataContracts.Cookies;
+using PerimeterX.CustomBehavior;
 
 namespace PerimeterX
 {
@@ -54,6 +55,7 @@ namespace PerimeterX
 		public LoginCredentialsFields LoginCredentialsFields { get; set; }
 		public string RequestId { get; set; }
 		public Dictionary<string,string> lowercaseHttpHeaders;
+		public CustomParameters customParameters { get; set; }
 
         public PxContext(HttpContext context, PxModuleConfigurationSection pxConfiguration)
 		{
@@ -196,7 +198,13 @@ namespace PerimeterX
 
             MonitorRequest = shouldMonitorRequest(context, pxConfiguration);
             lowercaseHttpHeaders = GetLowercaseHeadersAsDictionary();
-		}
+
+            ICustomParametersHandler customParametersHandler = PxCustomFunctions.GetCustomParamsHandler(pxConfiguration.CustomParametersHandler);
+			if (customParametersHandler != null)
+			{
+				customParameters = customParametersHandler.Handle(context.Request);
+			}
+        }
 
         private bool shouldMonitorRequest(HttpContext context, PxModuleConfigurationSection pxConfiguration)
         {

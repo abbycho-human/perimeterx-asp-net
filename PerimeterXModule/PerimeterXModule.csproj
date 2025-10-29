@@ -64,8 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomBehavior\ICustomParametersHandler.cs" />
     <Compile Include="CustomBehavior\ICredentialsExtractionHandler.cs" />
     <Compile Include="CustomBehavior\ILoginSuccessfulHandler.cs" />
+    <Compile Include="DataContracts\Activities\ActivitiesUtils.cs" />
+    <Compile Include="DataContracts\Activities\CustomParameters.cs" />
     <Compile Include="Internals\CredentialsIntelligence\LoginSuccessful\CustomLoginSuccessfulParser.cs" />
     <Compile Include="Internals\Helpers\BodyReader.cs" />
     <Compile Include="Internals\CredentialsIntelligence\LoginSuccessful\AdditionalS2SUtils.cs" />

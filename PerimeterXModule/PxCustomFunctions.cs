@@ -147,5 +147,45 @@ namespace PerimeterX
 
 			return null;
 		}
+
+        public static ICustomParametersHandler GetCustomParamsHandler(string customHandlerName)
+        {
+            if (string.IsNullOrEmpty(customHandlerName))
+            {
+                return null;
+            }
+
+            try
+            {
+                var customParams = getAssembliesTypes()
+                             .FirstOrDefault(t => t.GetInterface(typeof(ICustomParametersHandler).Name) != null &&
+                                                  t.Name.Equals(customHandlerName) && t.IsClass && !t.IsAbstract);
+
+                if (customParams != null)
+                {
+                    var instance = (ICustomParametersHandler)Activator.CreateInstance(customParams, null);
+                    PxLoggingUtils.LogDebug(string.Format("Successfully loaded ICustomParametersHandler '{0}'.", customHandlerName));
+                    return instance;
+                }
+                else
+                {
+                    PxLoggingUtils.LogDebug(string.Format(
+                        "Missing implementation of the configured ICustomParametersHandler ('ICustomParametersHandler' attribute): {0}.",
+                        customHandlerName));
+                }
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                PxLoggingUtils.LogError(string.Format("Failed to load the ICustomParametersHandler '{0}': {1}.",
+                                              customHandlerName, ex.Message));
+            }
+            catch (Exception ex)
+            {
+                PxLoggingUtils.LogError(string.Format("Encountered an error while retrieving the ICustomParametersHandler '{0}': {1}.",
+                                              customHandlerName, ex.Message));
+            }
+
+            return null;
+        }
     }
 }
