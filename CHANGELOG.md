@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [3.4.0] - 2025-10-30
+### Added
+- Added support for custom parameters feature
+
 ## [3.3.0] - 2024-01-24
 ### Added
 - Support for custom cookie header

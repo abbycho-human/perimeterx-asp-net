@@ -1,5 +1,5 @@
 {
-    "version": "3.3.0",
+    "version": "3.4.0",
     "supported_features": [
         "additional_activity_handler",
         "advanced_blocking_response",
@@ -11,6 +11,7 @@
         "css_ref",
         "custom_cookie_header",
         "custom_logo",
+        "custom_parameters",
         "enforce_specific_routes",
         "filter_by_extension",
         "filter_by_route",
