@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
-## [XX.XX.XX] - xxxx-xx-xx
+## [3.4.0] - 2025-10-30
 ### Added
 - Added support for custom parameters feature
 
