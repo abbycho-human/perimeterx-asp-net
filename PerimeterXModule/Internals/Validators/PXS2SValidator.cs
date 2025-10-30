@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using PerimeterX.DataContracts.Cookies;
+using PerimeterX.DataContracts.Activities;
 
 namespace PerimeterX
 {
@@ -115,6 +116,11 @@ namespace PerimeterX
                 },
 				FirstParty = PxConfig.FirstPartyEnabled
 			};
+
+			if (PxContext.customParameters != null)
+			{
+                ActivitiesUtils.addCustomParamsToRisk(riskRequest.Additional, PxContext.customParameters);
+            }
 
 			if (!string.IsNullOrEmpty(PxContext.Vid))
 			{

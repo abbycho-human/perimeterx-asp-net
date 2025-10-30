@@ -39,7 +39,7 @@ using System.Collections.Generic;
 using PerimeterX.Internals;
 using System.Web.Script.Serialization;
 using PerimeterX.CustomBehavior;
-using static System.Net.Mime.MediaTypeNames;
+using PerimeterX.DataContracts.Activities;
 
 namespace PerimeterX
 {
@@ -451,6 +451,11 @@ namespace PerimeterX
 
 		private void PostActivity(PxContext pxContext, string eventType, ActivityDetails details = null)
 		{
+			if (pxContext.customParameters != null)
+			{
+                ActivitiesUtils.addCustomParamsToAsyncActivities(details, pxContext.customParameters);
+            }
+
             if (pxContext.LoginCredentialsFields != null)
             {
 				LoginCredentialsFields loginCredentialsFields = pxContext.LoginCredentialsFields;

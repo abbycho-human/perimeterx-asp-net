@@ -52,6 +52,36 @@ namespace PerimeterX
 
         [DataMember(Name = "request_id")]
         public string RequestId { get; set; }
+
+        [DataMember(Name = "custom_param1")]
+        public string customParam1 { get; set; }
+
+        [DataMember(Name = "custom_param2")]
+        public string customParam2 { get; set; }
+
+        [DataMember(Name = "custom_param3")]
+        public string customParam3 { get; set; }
+
+        [DataMember(Name = "custom_param4")]
+        public string customParam4 { get; set; }
+
+        [DataMember(Name = "custom_param5")]
+        public string customParam5 { get; set; }
+
+        [DataMember(Name = "custom_param6")]
+        public string customParam6 { get; set; }
+
+        [DataMember(Name = "custom_param7")]
+        public string custom_param7 { get; set; }
+
+        [DataMember(Name = "custom_param8")]
+        public string customParam8 { get; set; }
+
+        [DataMember(Name = "custom_param9")]
+        public string customParam9 { get; set; }
+
+        [DataMember(Name = "custom_param10")]
+        public string customParam10 { get; set; }
     }
 
     [DataContract]
