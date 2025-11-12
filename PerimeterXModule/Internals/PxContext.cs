@@ -218,27 +218,19 @@ namespace PerimeterX
 
         private bool shouldMonitorRequest(HttpContext context, PxModuleConfigurationSection pxConfiguration)
         {
-            string uri = context.Request.Url.AbsolutePath;
-            if (uri.IndexOf("/", StringComparison.Ordinal) == 0)
-            {
-                uri = uri.Substring(1);
-            }
+            string uri = context.Request.Url.AbsolutePath.TrimStart('/');
 
-            var mitigationUrls = pxConfiguration.MitigationUrls;
-            if (mitigationUrls.Count > 0)
-            {
-                return !mitigationUrls.Contains(uri);
-            }
+            bool isMitigationRoute = pxConfiguration.MitigationUrls?.Contains(uri) == true;
+            bool isMonitoredRoute = pxConfiguration.MonitoredRoutes?.Contains(uri) == true;
 
-            if (!string.IsNullOrEmpty(pxConfiguration.ByPassMonitorHeader))
-            {
-                if (context.Request.Headers[pxConfiguration.ByPassMonitorHeader] == "1")
-                {
-                    return false;
-                }
-            }
+            bool isBypass = !string.IsNullOrEmpty(pxConfiguration.ByPassMonitorHeader) &&
+                            context.Request.Headers[pxConfiguration.ByPassMonitorHeader] == "1";
 
-            return pxConfiguration.MonitorMode;
+            bool monitorMode = pxConfiguration.MonitorMode;
+
+            bool shouldMonitor = !isMitigationRoute && (monitorMode || isMonitoredRoute) && !isBypass;
+
+            return shouldMonitor;
         }
 
         private string[] extractCookieNames(string cookieHeader)

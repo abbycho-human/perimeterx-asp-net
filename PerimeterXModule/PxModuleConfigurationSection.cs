@@ -579,6 +579,23 @@ namespace PerimeterX
             }
         }
 
+
+        [ConfigurationProperty("monitoredRoutes", DefaultValue = "")]
+        [TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
+        public StringCollection MonitoredRoutes
+        {
+            get
+            {
+                return (StringCollection)this["monitoredRoutes"];
+            }
+
+            set
+            {
+                this["monitoredRoutes"] = value;
+            }
+        }
+
+
         [ConfigurationProperty("bypassMonitorHeader", DefaultValue = "")]
         public string ByPassMonitorHeader
         {
