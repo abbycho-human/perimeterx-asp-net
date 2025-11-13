@@ -220,8 +220,8 @@ namespace PerimeterX
         {
             string uri = context.Request.Url.AbsolutePath.TrimStart('/');
 
-            bool isMitigationRoute = !!pxConfiguration.MitigationUrls?.Contains(uri);
-            bool isMonitoredRoute = !!pxConfiguration.MonitoredRoutes?.Contains(uri);
+            bool isMitigationRoute = pxConfiguration.MitigationUrls?.Contains(uri) ?? false;
+            bool isMonitoredRoute = pxConfiguration.MonitoredRoutes?.Contains(uri) ?? false;
 
             bool isBypass = !string.IsNullOrEmpty(pxConfiguration.ByPassMonitorHeader) &&
                             context.Request.Headers[pxConfiguration.ByPassMonitorHeader] == "1";
