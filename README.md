@@ -26,6 +26,7 @@ Table of Contents
   *   [Filter Sensitive Headers](#sensitive-headers)
   *   [Sensitive Routes](#sensitive-routes)
   *   [Whitelist Routes](#whitelist-routes)
+  *   [Whitelist IPs](#whitelist-ips)
   *   [Enforcer Specific Routes](#enforcer-specific-routes)
   *   [API Timeouts](#api-timeout)
   *   [Send Page Activities](#send-page-activities)
@@ -345,6 +346,18 @@ List of routes prefix. The Perimeterx module will skip detection if the prefix m
 ```xml
 ...
   routesWhitelist="/login,/user/profile"
+...
+```
+
+#### <a name="whitelist-ips"></a> Whitelist IPs
+
+List of IP addresses. The PerimeterX module will skip detection if the request IP matches one of the listed IPs. The request IP is resolved using the same logic as detection (the `socketIpHeader` value if configured, otherwise the request socket IP).
+
+**default: None**
+
+```xml
+...
+  ipWhitelist="127.0.0.1,10.0.0.1"
 ...
 ```
 

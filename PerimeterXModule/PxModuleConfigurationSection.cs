@@ -362,6 +362,20 @@ namespace PerimeterX
             }
         }
 
+        [ConfigurationProperty("ipWhitelist")]
+        [TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
+        public StringCollection IpWhitelist
+        {
+            get
+            {
+                return (StringCollection)this["ipWhitelist"];
+            }
+            set
+            {
+                this["ipWhitelist"] = value;
+            }
+        }
+
         [ConfigurationProperty("customLogo")]
         public string CustomLogo
         {

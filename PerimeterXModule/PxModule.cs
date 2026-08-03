@@ -66,6 +66,7 @@ namespace PerimeterX
 		private readonly StringCollection fileExtWhitelist;
 		private readonly StringCollection routesWhitelist;
 		private readonly StringCollection useragentsWhitelist;
+		private readonly StringCollection ipWhitelist;
 		private readonly StringCollection enforceSpecificRoutes;
 		private readonly string cookieKey;
 		private readonly string customBlockUrl;
@@ -122,6 +123,7 @@ namespace PerimeterX
 			fileExtWhitelist = config.FileExtWhitelist;
 			routesWhitelist = config.RoutesWhitelist;
 			useragentsWhitelist = config.UseragentsWhitelist;
+			ipWhitelist = config.IpWhitelist;
 			enforceSpecificRoutes = config.EnforceSpecificRoutes;
 
 			InitCredentialsIntelligence(config);
@@ -564,6 +566,17 @@ namespace PerimeterX
 			if (useragentsWhitelist != null && useragentsWhitelist.Contains(context.Request.UserAgent))
 			{
 				return true;
+			}
+
+			// whitelist ip
+			if (ipWhitelist != null && ipWhitelist.Count > 0)
+			{
+				var config = (PxModuleConfigurationSection)ConfigurationManager.GetSection(PxConstants.CONFIG_SECTION);
+				var requestIp = PxCommonUtils.GetRequestIP(context, config);
+				if (requestIp != null && ipWhitelist.Contains(requestIp))
+				{
+					return true;
+				}
 			}
 
 			// enforce specific routes prefix
