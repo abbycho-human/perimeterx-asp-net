@@ -39,6 +39,10 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IPAddressRange">
+      <HintPath>..\..\packages\IPAddressRange.4.1.0\lib\net45\IPAddressRange.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Jil, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Jil.2.15.0\lib\net45\Jil.dll</HintPath>
       <Private>True</Private>
