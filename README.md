@@ -351,13 +351,17 @@ List of routes prefix. The Perimeterx module will skip detection if the prefix m
 
 #### <a name="whitelist-ips"></a> Whitelist IPs
 
-List of IP addresses. The PerimeterX module will skip detection if the request IP matches one of the listed IPs. The request IP is resolved using the same logic as detection (the `socketIpHeader` value if configured, otherwise the request socket IP).
+List of IPs. The PerimeterX module will skip detection if the request IP matches one of the entries. The request IP is resolved using the same logic as detection (the `socketIpHeader` value if configured, otherwise the request socket IP).
+
+Each entry may be one of the following (IPv4 and IPv6 are both supported):
+- An exact IP address — e.g. `127.0.0.1`
+- A CIDR block — e.g. `10.0.0.0/24`
 
 **default: None**
 
 ```xml
 ...
-  ipWhitelist="127.0.0.1,10.0.0.1"
+  ipWhitelist="127.0.0.1,10.0.0.0/24"
 ...
 ```
 

@@ -573,7 +573,7 @@ namespace PerimeterX
 			{
 				var config = (PxModuleConfigurationSection)ConfigurationManager.GetSection(PxConstants.CONFIG_SECTION);
 				var requestIp = PxCommonUtils.GetRequestIP(context, config);
-				if (requestIp != null && ipWhitelist.Contains(requestIp))
+				if (PxCommonUtils.IsIpWhitelisted(requestIp, ipWhitelist))
 				{
 					return true;
 				}
