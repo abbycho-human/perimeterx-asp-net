@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
-## [xx.xx.xx] - xxxx-xx-xx
+## [3.6.0] - 2026-08-10
 ### Added
 - Added support for filter by IP feature 
 
