@@ -5,7 +5,7 @@
 [PerimeterX](http://www.perimeterx.com) ASP.NET SDK
 ===================================================
 
-> Latest stable version: [v3.5.0](https://www.nuget.org/packages/PerimeterXModule/3.5.0)
+> Latest stable version: [v3.6.0](https://www.nuget.org/packages/PerimeterXModule/3.6.0)
 
 Table of Contents
 -----------------
@@ -26,6 +26,7 @@ Table of Contents
   *   [Filter Sensitive Headers](#sensitive-headers)
   *   [Sensitive Routes](#sensitive-routes)
   *   [Whitelist Routes](#whitelist-routes)
+  *   [Whitelist IPs](#whitelist-ips)
   *   [Enforcer Specific Routes](#enforcer-specific-routes)
   *   [API Timeouts](#api-timeout)
   *   [Send Page Activities](#send-page-activities)
@@ -345,6 +346,22 @@ List of routes prefix. The Perimeterx module will skip detection if the prefix m
 ```xml
 ...
   routesWhitelist="/login,/user/profile"
+...
+```
+
+#### <a name="whitelist-ips"></a> Whitelist IPs
+
+List of IPs. The PerimeterX module will skip detection if the request IP matches one of the entries. The request IP is resolved using the same logic as detection (the `socketIpHeader` value if configured, otherwise the request socket IP).
+
+Each entry may be one of the following (IPv4 and IPv6 are both supported):
+- An exact IP address — e.g. `127.0.0.1`
+- A CIDR block — e.g. `10.0.0.0/24`
+
+**default: None**
+
+```xml
+...
+  ipWhitelist="127.0.0.1,10.0.0.0/24"
 ...
 ```
 
