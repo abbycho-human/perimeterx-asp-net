@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Security.Cryptography;
 using System.Text;
+using NetTools;
 
 namespace PerimeterX
 {
@@ -39,6 +40,43 @@ namespace PerimeterX
 			}
 			
 			return context.Request.UserHostAddress;
+		}
+
+		public static bool IsIpWhitelisted(string ip, ICollection whitelist)
+		{
+			if (whitelist == null || string.IsNullOrEmpty(ip))
+			{
+				return false;
+			}
+
+			IPAddress requestIp;
+			if (!IPAddress.TryParse(ip, out requestIp))
+			{
+				return false;
+			}
+
+			foreach (string rawEntry in whitelist)
+			{
+				if (string.IsNullOrEmpty(rawEntry))
+				{
+					continue;
+				}
+				var entry = rawEntry.Trim();
+
+				try
+				{
+					if (IPAddressRange.Parse(entry).Contains(requestIp))
+					{
+						return true;
+					}
+				}
+				catch (Exception ex)
+				{
+					PxLoggingUtils.LogDebug("Failed to evaluate ipWhitelist entry '" + entry + "': " + ex.Message);
+				}
+			}
+
+			return false;
 		}
 
 		public static void AddHeaderToRequest(HttpContext context, string key, string value)

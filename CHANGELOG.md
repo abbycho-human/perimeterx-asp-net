@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [xx.xx.xx] - xxxx-xx-xx
+### Added
+- Added support for filter by IP feature 
+
 ## [3.5.0] - 2025-11-13
 ### Added
 - Added support for monitored routes feature
